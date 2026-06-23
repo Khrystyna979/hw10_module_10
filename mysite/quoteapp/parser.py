@@ -47,7 +47,7 @@ def parse_quotestoscrape():
                 )
                 
                 for tag in tags_list:
-                    tag_obj, _ = Tag.objects.get_or_create(name=tag)
+                    tag_obj, _ = Tag.objects.get_or_create(name=tag, defaults={'user': admin_user})
                     new_quote.tags.add(tag_obj)
           
         

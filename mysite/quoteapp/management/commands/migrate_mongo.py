@@ -32,10 +32,12 @@ class Command(BaseCommand):
         for item in all_mongo_authors:
             author, _ = Author.objects.get_or_create(
                 fullname=item['fullname'],
-                born_date=item['born_date'],
-                born_location=item['born_location'],
-                description=item['description'],
-                user=admin_user
+                defaults={
+                    'born_date': item['born_date'],
+                    'born_location': item['born_location'],
+                    'description': item['description'],
+                    'user': admin_user
+                }
             )
             
         for item in all_mongo_quotes:
