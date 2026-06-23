@@ -1,0 +1,173 @@
+/* Custom page CSS */
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.tags-box {
+  text-align: right;
+}
+
+.tags-box h2 {
+  margin-top: 0px;
+}
+
+.tag-item {
+  display: block;
+  margin: 4px;
+}
+
+.quote {
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px #333333;
+}
+
+.quote small.author {
+  font-weight: bold;
+  color: #3677E8;
+}
+
+.quote span.text {
+  display: block;
+  margin-bottom: 5px;
+  font-size: large;
+  font-style: italic;
+}
+
+.quote .tags {
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: white;
+  font-size: small;
+  background-color: #7CA3E6;
+}
+
+a.tag:hover {
+  text-decoration: none;
+}
+
+/* Притискання футера до низу за допомогою Flexbox */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+}
+
+.author-details  {
+  width: 80%;
+}
+
+.author-description {
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+ul.pager {
+  margin-bottom: 100px;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.zyte {
+  color: #104baa;
+}
+
+/* Стилізація футера */
+.footer {
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+  margin-top: auto; /* Штовхає футер до низу екрана */
+  border-top: 1px solid #eee; 
+}
+
+form {
+  margin-bottom: 40px; 
+}
+
+/* Налаштування простору навколо шапки */
+.header-box {
+  max-width: 1170px;
+  padding-bottom: 40px;
+  margin-left: auto;     /* Авто-відступи зліва і справа центрують весь блок */
+  margin-right: auto;
+  padding-left: 0px;    /* Внутрішні безпечні відступи, як у Bootstrap */
+  padding-right: 15px;
+}
+
+/* Стилізація твого нового меню (рівняння та відступи як в оригіналі) */
+.header-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  padding-top: 40px; 
+  gap: 20px; /* Єдиний контролер простору — рівно 20px між кожним елементом */
+}
+
+.header-menu a,
+.header-menu .dropdown-toggle {
+  display: inline-block;   
+  white-space: nowrap;     
+  text-decoration: none;   
+  font-size: 17px !important; /* Узгоджуємо однаковий розмір для всього ряду */
+  font-weight: normal !important;
+  line-height: 1 !important;  /* Скидаємо висоту рядка для ідеального центрування */
+  margin-left: 0 !important;  /* ПОВНІСТЮ прибираємо старі марджини, щоб вони не додавалися до gap */
+}
+
+/* Прибираємо лівий маркер для першого посилання, щоб не було зайвого відступу */
+.header-menu a:first-child {
+  margin-left: 0;
+}
+
+/* Робимо так, щоб дропдаун та інші посилання стояли в один рядок */
+.header-menu .dropdown {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Налаштовуємо поведінку: показуємо меню при наведенні (hover) */
+.header-menu .dropdown:hover > .dropdown-menu {
+  display: block;
+  margin-top: 5px !important; /* Робимо мікро-відступ віконця вниз, щоб воно не липло до тексту */
+}
+
+/* Оскільки в Bootstrap випадаючий список вирівнюється по лівому краю, 
+   робимо так, щоб він вирівнювався по правому краю нашого меню */
+.header-menu .dropdown-menu {
+  right: 0;
+  left: auto;
+  text-align: left; 
+}
+/* Коригуємо відступи для посилань всередині випадаючого списку */
+.header-menu .dropdown-menu a {
+  margin-left: 0 !important; 
+  padding: 6px 20px !important;
+  display: block !important; /* Робимо їх знову блочними, щоб йшли стовпчиком */
+  color: #333 !important;
+  font-size: 16px !important;
+  line-height: 1.42857143 !important; /* Повертаємо комфортну висоту рядка для списку */
+}
+
+/* Ефект підсвічування при наведенні на пункт у списку */
+.header-menu .dropdown-menu a:hover {
+  background-color: #f5f5f5;
+  color: #262626 !important;
+}

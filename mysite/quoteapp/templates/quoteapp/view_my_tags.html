@@ -1,0 +1,32 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="container"> 
+    <div class="tags">
+        {% for tag in tags %}
+            <div class="d-flex align-items-center mb-2" style="font-size: 17px;">
+        
+                <span class="text-dark me-2" itemprop="tag">
+                    {{ forloop.counter }}. 
+                    <strong>
+                    {% if tag.name %}
+                        <a href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                    {% else %}
+                        <span class="text-muted"> No tag {{ tag.name }}</span>
+                    {% endif %}
+                    </strong>
+                </span>
+
+                <a style="color: red;" href="{% url 'quoteapp:delete_tag' tag=tag.name %}">Delete tag</a>
+
+            </div>
+        {% empty %}
+            <div class="container text-center mt-10">
+                <h3>You don't have any tags of your own.</h3>
+                <a href="{% url 'quoteapp:add_tag' %}">Create your first tag</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

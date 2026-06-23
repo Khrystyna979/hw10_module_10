@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Quotes to Scrape</title>
+    <link rel="stylesheet" href="{% static 'quoteapp/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quoteapp/style.css' %}">
+    <link rel="stylesheet" href="{% static 'quoteapp/alerts.css' %}">
+</head>
+<body>
+    <main>
+        <div class="row header-box">
+            <div class="col-md-7">
+                <h1>
+                    <a href="/" style="text-decoration: none;">Quotes to Scrape</a>
+                </h1>
+            </div>
+
+            <div class="col-md-5 header-menu">
+                {% if request.user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle">View my <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'quoteapp:my-quotes' %}">My quotes</a></li>
+                            <li><a href="{% url 'quoteapp:my-tags' %}">My tags</a></li>
+                            <li><a href="{% url 'quoteapp:my-authors' %}">My authors</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle">Add <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'quoteapp:add_tag' %}">Add tag</a></li>
+                            <li><a href="{% url 'quoteapp:add_author' %}">Add author</a></li>
+                            <li><a href="{% url 'quoteapp:add_quote' %}">Add quote</a></li>
+                        </ul>
+                    </div>
+                    <a href="/scraping/">Update</a>
+                    <a href="/users/logout">Logout</a>
+                {% else %}
+                    <a href="/users/signup">Sign up</a>
+                    <a href="/users/login/">Login</a>
+                {% endif %}
+            </div>
+        </div>
+            {% block content %} {% endblock %}
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                Based on: <a href="https://quotes.toscrape.com/">Quotes.toscrape.com</a>
+            </p>
+            <p class="copyright">
+                Made with <span class='zyte'>❤</span> by <a class='zyte' href="https://github.com/Khrystyna979">Khrystyna Oliinyk</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

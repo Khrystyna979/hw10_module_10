@@ -1,0 +1,27 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="container"> 
+    <div class="author-details">
+        {% for author in authors %}
+            <div class="d-flex align-items-center mb-2" style="font-size: 17px;">
+        
+                <span class="text-dark me-2" itemprop="author">
+                    {{ forloop.counter }}. <strong>{{ author.fullname }}</strong>
+                </span>
+
+                <a class="me-3" href="{% url 'quoteapp:about' fullname=author.fullname %}">(about)</a>
+
+                <a style="color: red;" href="{% url 'quoteapp:delete_author' fullname=author.fullname %}">Delete author</a>
+
+            </div>
+        {% empty %}
+            <div class="container text-center mt-10">
+                <h3>You don't have any authors of your own.</h3>
+                <a href="{% url 'quoteapp:add_author' %}">Create your first author</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

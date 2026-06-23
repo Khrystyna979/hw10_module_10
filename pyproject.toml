@@ -1,0 +1,25 @@
+[project]
+name = "django_quotes_site"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=6.0.5,<7.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)",
+    "mongoengine (>=0.29.3,<0.30.0)",
+    "pymongo (>=4.17.0,<5.0.0)",
+    "psycopg2-binary (>=2.9.12,<3.0.0)",
+    "bs4 (>=0.0.2,<0.0.3)",
+    "requests (>=2.34.2,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false

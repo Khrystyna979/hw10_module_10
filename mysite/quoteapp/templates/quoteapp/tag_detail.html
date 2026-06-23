@@ -1,0 +1,54 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="container"> 
+    <h3>Viewing tag: <a href="{% url 'quoteapp:tag' tag=tag_name %}">{{ tag_name }}</a></h3>
+            <div class="row">
+                <div class="col-md-8">
+                    {% for quote in page_obj %}
+                        <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+                            <span class="text" itemprop="text">{{ quote.quote }}</span>
+                            <span>by 
+                                <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+                                <a href="{% url 'quoteapp:about' fullname=quote.author.fullname %}">(about)</a> 
+                            </span>
+                            <div class="tags">
+                                Tags:
+                                {% for tag in quote.tags.all %}
+                                    <a class="tag" href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="container">
+                            <h3>You don't have any quotes for this tag</h3>
+                            <a href="{% url 'quoteapp:add_quote' %}">Create your quote</a>
+                        </div>
+                    {% endfor %}
+                    <nav>
+                        <ul class="pager">
+                        {% if page_obj.has_next %}
+                            <li class="next">
+                                <a href="{% url 'quoteapp:tag_pagination' tag=tag_name page_number=page_obj.next_page_number %}">Next <span aria-hidden="true">&rarr;</span></a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_previous %}
+                            <li class="previous">
+                                <a href="{% url 'quoteapp:tag_pagination' tag=tag_name page_number=page_obj.previous_page_number %}"><span aria-hidden="true">&larr;</span> Previous</a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-4 tags-box">
+                    <h2>Top Ten tags</h2>
+                    {% for tag in top_tags %}
+                        <span class="tag-item">
+                            <a class="tag" style="font-size: {% cycle '28px' '26px' '24px' '22px' '20px' '18px' '16px' '14px' '12px' '10px' %}" href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+</div> 
+{% endblock %}

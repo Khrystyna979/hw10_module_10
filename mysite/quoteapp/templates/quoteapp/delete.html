@@ -1,0 +1,18 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="container text-center mt-5">
+    <h2>Are you sure you want to delete: <strong>{{ object_name }}</strong>?</h2>
+    {% if warning_message %}
+        <p class="text-danger"><strong>Warning:</strong> {{ warning_message }}</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">
+            ✔️ Yes, Delete
+        </button>
+        <a href="{% url cancel_url %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

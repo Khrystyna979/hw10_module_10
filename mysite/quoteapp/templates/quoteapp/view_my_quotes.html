@@ -1,0 +1,34 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+<div class="container"> 
+    
+    <div class="row">
+        <div class="col-md-8">
+            {% for quote in quotes %}
+                <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+                    <span class="text" itemprop="text">{{ quote.quote }}</span>
+                    <span>by 
+                        <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+                        <a href="{% url 'quoteapp:about' fullname=quote.author.fullname %}">(about)</a> 
+                    </span>
+                    <div class="tags">
+                        Tags:
+                        {% for tag in quote.tags.all %}
+                            <a class="tag" href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-3 text-right mt-10">
+                        <a style="color: red;" href="{% url 'quoteapp:delete_quote' quote_id=quote.id %}">Delete quote</a>
+                    </div>
+            {% empty %}
+                <div class="container text-center mt-10">
+                    <h3>You don't have any quotes of your own.</h3>
+                    <a href="{% url 'quoteapp:add_quote' %}">Create your first quote</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

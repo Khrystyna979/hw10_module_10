@@ -1,0 +1,67 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+<div class="container"> 
+    
+    <div class="row">
+        <div class="col-md-8">
+            {% for quote in page_obj %}
+                <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+                    <span class="text" itemprop="text">{{ quote.quote }}</span>
+                    <span>by 
+                        <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+                        <a href="{% url 'quoteapp:about' fullname=quote.author.fullname %}">(about)</a> 
+                    </span>
+                    <div class="tags">
+                        Tags:
+                        {% for tag in quote.tags.all %}
+                            <a class="tag" href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <nav>
+                <ul class="pager">
+                    {% if page_obj.has_previous %}
+                        <li class="previous">
+                            <a href="{% url 'quoteapp:main_pagination' page_number=page_obj.previous_page_number %}">
+                                <span aria-hidden="true">&larr;</span> Previous
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="active" style="display: inline-block; margin:  0px;">
+                                <span style="font-weight: bold; color: black; font-size: 8 px;">{{ num }}</span>
+                            </li>
+                        {% else %}
+                            <li style="display: inline-block; margin: 0px;">
+                                <a href="{% url 'quoteapp:main_pagination' page_number=num %}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="next">
+                            <a href="{% url 'quoteapp:main_pagination' page_number=page_obj.next_page_number %}">
+                                Next <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-4 tags-box">
+            <h2>Top Ten tags</h2>
+            {% for tag in top_tags %}
+                <span class="tag-item">
+                    <a class="tag" style="font-size: {% cycle '28px' '26px' '24px' '22px' '20px' '18px' '16px' '14px' '12px' '10px' %}" href="{% url 'quoteapp:tag' tag=tag.name %}">{{ tag.name }}</a>
+                </span>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div> {% endblock %}
